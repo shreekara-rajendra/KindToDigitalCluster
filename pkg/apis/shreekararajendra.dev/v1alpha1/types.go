@@ -9,3 +9,22 @@ type DigitalCluster struct {
 	metav1.ObjectMeta
 	spec CustomSpec
 }
+
+type CustomSpec struct {
+	name       string
+	region     string
+	version    string
+	node_pools []node_pool
+}
+
+type node_pool struct {
+	size  string
+	name  string
+	count int
+}
+
+type DigitalClusterList struct {
+	metav1.TypeMeta
+	metav1.ObjectMeta
+	Items []DigitalCluster
+}
