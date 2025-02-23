@@ -4,27 +4,30 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// +genclient
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 type DigitalCluster struct {
-	metav1.TypeMeta
-	metav1.ObjectMeta
-	spec CustomSpec
+	metav1.TypeMeta   `json:",inline"`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
+	Spec              CustomSpec `json:"spec"`
 }
 
 type CustomSpec struct {
-	name       string
-	region     string
-	version    string
-	node_pools []node_pool
+	Name      string     `json:"name"`
+	Region    string     `json:"region"`
+	Version   string     `json:"version"`
+	NodePools []NodePool `json:"nodePools"`
 }
 
-type node_pool struct {
-	size  string
-	name  string
-	count int
+type NodePool struct {
+	Size  string `json:"size"`
+	Name  string `json:"name"`
+	Count int    `json:"count"`
 }
 
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 type DigitalClusterList struct {
-	metav1.TypeMeta
-	metav1.ObjectMeta
-	Items []DigitalCluster
+	metav1.TypeMeta `json:",inline"`
+	metav1.ListMeta `json:"metadata,omitempty"`
+	Items           []DigitalCluster `json:"items"`
 }
