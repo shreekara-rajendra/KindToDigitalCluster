@@ -1,0 +1,5 @@
+apiVersion: shreekararajendra.dev/v1alpha1
+kind: DigitalCluster
+metadata:
+  name: dc-1
+spec: 

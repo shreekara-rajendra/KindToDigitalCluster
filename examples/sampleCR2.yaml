@@ -1,0 +1,12 @@
+apiVersion: shreekararajendra.dev/v1alpha1
+kind: DigitalCluster
+metadata:
+  name: dc-2
+spec: 
+  name: dc-2
+  region: south-west
+  version: "1234"
+  nodePools:
+    - size: "1"
+      name: node-1
+      count: 2
