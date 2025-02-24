@@ -52,11 +52,12 @@ spec:
                 type: array
               region:
                 type: string
+              tokenSecret:
+                type: string
               version:
                 type: string
             required:
             - name
-            - nodePools
             - region
             - version
             type: object

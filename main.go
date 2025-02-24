@@ -5,8 +5,11 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"time"
 
 	kclient "github.com/shreekara-rajendra/KindToDigitalOcean/pkg/client/clientset/versioned"
+	custominformer "github.com/shreekara-rajendra/KindToDigitalOcean/pkg/client/informers/externalversions"
+	"github.com/shreekara-rajendra/KindToDigitalOcean/pkg/controller"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
@@ -38,5 +41,11 @@ func main() {
 	for _, item := range dclist.Items {
 		fmt.Println(item)
 	}
+	ch := make(chan struct{})
+	informer := custominformer.NewSharedInformerFactory(clientset, 20*time.Minute)
+	digitalinformer := informer.Shreekararajendra().V1alpha1().DigitalClusters()
+	digitalController := controller.NewController(clientset, digitalinformer)
+	informer.Start(ch)
+	digitalController.Run(ch)
 
 }

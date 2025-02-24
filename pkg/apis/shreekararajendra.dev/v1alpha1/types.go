@@ -13,10 +13,11 @@ type DigitalCluster struct {
 }
 
 type CustomSpec struct {
-	Name      string     `json:"name"`
-	Region    string     `json:"region"`
-	Version   string     `json:"version"`
-	NodePools []NodePool `json:"nodePools,omitempty"`
+	Name        string     `json:"name"`
+	Region      string     `json:"region"`
+	Version     string     `json:"version"`
+	TokenSecret string     `json:"tokenSecret,omitempty"`
+	NodePools   []NodePool `json:"nodePools,omitempty"`
 }
 
 type NodePool struct {

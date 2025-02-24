@@ -6,6 +6,7 @@ spec:
   name: dc-2
   region: south-west
   version: "1234"
+  tokenSecret: "abcd"
   nodePools:
     - size: "1"
       name: node-1
